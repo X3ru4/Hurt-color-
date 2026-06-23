@@ -1,0 +1,134 @@
+{
+  "format_version": 3,
+  "header": {
+    "name": " §lHurt color+§r",
+    "description": "§l§7by§r X3ru4\nThis resource pack changes the damage color of players and entities.",
+    "uuid": "3041ea4a-8c71-4dd9-aa27-27bea1c13b02",
+    "version": "1.0.0",
+    "min_engine_version": "1.21.130"
+  },
+  "modules": [
+    {
+      "description": "Hurt color+",
+      "type": "resources",
+      "uuid": "5471b3b8-d7f3-4a93-b4fd-fad9727c9d3b",
+      "version": "1.0.0"
+    }
+  ],
+  "metadata": {
+    "authors": [
+      "X3ru4"
+    ],
+    "url": "https://github.com/X3ru4/Hurt-color-"
+  },
+  "settings": [
+    {
+      "type": "toggle",
+      "default": true,
+      "name": "hcp:on_fire_color",
+      "text": "§lApply to 'on_fire_color'"
+    },
+    {
+      "type": "toggle",
+      "default": false,
+      "name": "hcp:rainbow",
+      "text": "§lRainbow§r (son!)"
+    },
+    {
+      "type": "toggle",
+      "default": false,
+      "name": "hcp:fade_in",
+      "text": "§lFade-in§r"
+    },
+    {
+      "type": "toggle",
+      "default": true,
+      "name": "hcp:fade_out",
+      "text": "§lFade-out§r (Recommended)"
+    },
+    {
+      "type": "label",
+      "text": "§lPlayer §cR§aG§9B§fA"
+    },
+    {
+      "type": "slider",
+      "text": "§cRed§r",
+      "name": "hcp:player_red",
+      "min": 0,
+      "max": 255,
+      "step": 1,
+      "default": 255
+    },
+    {
+      "type": "slider",
+      "text": "§aGreen§r",
+      "name": "hcp:player_green",
+      "min": 0,
+      "max": 255,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "slider",
+      "text": "§9Blue§r",
+      "name": "hcp:player_blue",
+      "min": 0,
+      "max": 255,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "slider",
+      "text": "Alpha",
+      "name": "hcp:player_alpha",
+      "min": 0,
+      "max": 255,
+      "step": 1,
+      "default": 76
+    },
+    {
+      "type": "label",
+      "text": "§lMob §cR§aG§9B§fA"
+    },
+    {
+      "type": "slider",
+      "text": "§cRed§r",
+      "name": "hcp:mob_red",
+      "min": 0,
+      "max": 255,
+      "step": 1,
+      "default": 255
+    },
+    {
+      "type": "slider",
+      "text": "§aGreen§r",
+      "name": "hcp:mob_green",
+      "min": 0,
+      "max": 255,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "slider",
+      "text": "§9Blue§r",
+      "name": "hcp:mob_blue",
+      "min": 0,
+      "max": 255,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "slider",
+      "text": "Alpha",
+      "name": "hcp:mob_alpha",
+      "min": 0,
+      "max": 255,
+      "step": 1,
+      "default": 76
+    },
+    {
+      "type": "label",
+      "text": "§lFormulas§r [Red, Green, Blue, Alpha]\n[255, 0, 0, 76] -> Default\n[240, 240, 240, 178] -> White Smoke\n[220, 20, 60, xxx] -> Crimson\n[255, 215, 0, xxx] -> Gold\n[127, 255, 0, xxx] -> Chartreuse\n[32, 178, 170, xxx] -> Light sea green\n[0, 191, 255, xxx] -> Deep sky blue"
+    }
+  ]
+}

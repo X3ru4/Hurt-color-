@@ -1,0 +1,30 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.parrot": {
+      "arrays": {
+        "textures": {
+          "Array.skins": [ "Texture.red_blue", "Texture.blue", "Texture.green", "Texture.yellow_blue", "Texture.grey" ]
+        }
+      },
+      "geometry": "Geometry.default",
+      "materials": [ { "*": "Material.default" } ],
+      "textures": [ "Array.skins[query.variant]" ],
+      "overlay_color": {
+        "a": "v.is_hurt = v.is_hurt ?? false; v.hurt_time = v.hurt_time ?? 0.0; v.hurt_time = !v.is_hurt ? q.life_time; v.is_hurt = false; return this;"
+      },
+      "is_hurt_color": {
+        "r": "q.get_pack_setting('hcp:mob_red') / 255",
+        "g": "q.get_pack_setting('hcp:mob_green') / 255",
+        "b": "q.get_pack_setting('hcp:mob_blue') / 255",
+        "a": "(q.life_time - v.hurt_time >= 0.5) ? { v.hurt_time = q.life_time; }; v.is_hurt = true; v.hcp_alpha = q.get_pack_setting('hcp:mob_alpha') / 255; v.hurt_progress = math.clamp((q.is_pack_setting_enabled('hcp:fade_in') || q.is_pack_setting_enabled('hcp:fade_out') ? (q.is_pack_setting_enabled('hcp:fade_in') && q.is_pack_setting_enabled('hcp:fade_out') ? (math.sin(((q.life_time - v.hurt_time) / 0.5) * 180)) : (q.is_pack_setting_enabled('hcp:fade_in') ? ((q.life_time - v.hurt_time) / 0.5) : (1 - ((q.life_time - v.hurt_time) / 0.5)))) : 1), 0, 1); return math.ease_out_cubic(0.0, v.hcp_alpha, v.hurt_progress);"
+      },
+      "on_fire_color": {
+        "r": "q.is_pack_setting_enabled('hcp:on_fire_color') ? (q.get_pack_setting('hcp:mob_red') / 255) : this",
+        "g": "q.is_pack_setting_enabled('hcp:on_fire_color') ? (q.get_pack_setting('hcp:mob_green') / 255) : this",
+        "b": "q.is_pack_setting_enabled('hcp:on_fire_color') ? (q.get_pack_setting('hcp:mob_blue') / 255) : this",
+        "a": "q.is_pack_setting_enabled('hcp:on_fire_color') ? (q.get_pack_setting('hcp:mob_alpha') / 255) : this"
+      }
+    }
+  }
+}
