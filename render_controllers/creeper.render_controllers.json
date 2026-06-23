@@ -9,7 +9,7 @@
         "r": "((variable.flash == 0.0) || (query.swelling_dir < 0.0)) ? this : 1.0",
         "g": "((variable.flash == 0.0) || (query.swelling_dir < 0.0)) ? this : 1.0",
         "b": "((variable.flash == 0.0) || (query.swelling_dir < 0.0)) ? this : 1.0",
-        "a": "(q.is_alive) ? { v.hurt_stop = false; v.is_hurt = v.is_hurt ?? false;; v.hurt_time = v.hurt_time ?? 0.0; v.hurt_time = !v.is_hurt ? q.life_time; v.is_hurt = false; v.fade_in = q.is_pack_setting_enabled('hcp:fade_in'); v.fade_out = q.is_pack_setting_enabled('hcp:fade_out'); }; return (variable.flash == 0.0) || (query.swelling_dir < 0.0)) ? this : 0.5;"
+        "a": "(q.is_alive) ? { v.hurt_stop = false; v.is_hurt = v.is_hurt ?? false;; v.hurt_time = v.hurt_time ?? 0.0; v.hurt_time = !v.is_hurt ? q.life_time; v.is_hurt = false; v.fade_in = q.is_pack_setting_enabled('hcp:fade_in'); v.fade_out = q.is_pack_setting_enabled('hcp:fade_out'); }; return ((variable.flash == 0.0) || (query.swelling_dir < 0.0)) ? this : 0.5;"
       },
       "is_hurt_color": {
         "r": "q.get_pack_setting('hcp:mob_red') / 255",

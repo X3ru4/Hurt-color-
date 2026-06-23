@@ -21,7 +21,7 @@
       },
       "on_fire_color": {
         "r": "q.is_pack_setting_enabled('hcp:on_fire_color') ? (q.get_pack_setting('hcp:mob_red') / 255) : this",
-        "g": "q.is_pack_main_enabled('hcp:on_fire_color') ? (q.get_pack_setting('hcp:mob_green') / 255) : this",
+        "g": "q.is_pack_setting_enabled('hcp:on_fire_color') ? (q.get_pack_setting('hcp:mob_green') / 255) : this",
         "b": "q.is_pack_setting_enabled('hcp:on_fire_color') ? (q.get_pack_setting('hcp:mob_blue') / 255) : this",
         "a": "q.is_pack_setting_enabled('hcp:on_fire_color') ? (q.get_pack_setting('hcp:mob_alpha') / 255) : this"
       }
