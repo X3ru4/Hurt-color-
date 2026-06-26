@@ -37,19 +37,19 @@
         "a": "variable.armor_texture_slot ? query.armor_color_slot(4, 3) : this"
       },
       "overlay_color": {
-        "a": "(q.is_alive) ? { v.hurt_stop = false; v.is_hurt = v.is_hurt ?? false;; v.hurt_time = v.hurt_time ?? 0.0; v.hurt_time = !v.is_hurt ? q.life_time; v.is_hurt = false; v.fade_in = q.is_pack_setting_enabled('hcp:fade_in'); v.fade_out = q.is_pack_setting_enabled('hcp:fade_out'); }; return this;"
+        "a": "v.phase = v.phase ?? 0.0; v.hsv_p = v.hsv_p ?? 0.0; v.hurt_stop = false; v.is_hurt = v.is_hurt ?? false; v.hurt_time = v.hurt_time ?? 0.0; v.hurt_delta = v.hurt_delta ?? 0.0; v.rainbow = v.rainbow ?? false; v.hurt_time = !v.is_hurt ? q.life_time; v.is_hurt = false; return this;"
       },
       "is_hurt_color": {
-        "r": "q.get_pack_setting('hcp:mob_red') / 255",
-        "g": "q.get_pack_setting('hcp:mob_green') / 255",
-        "b": "q.get_pack_setting('hcp:mob_blue') / 255",
-        "a": "(!v.hurt_stop) ? { (q.life_time - v.hurt_time >= 0.5) ? { v.hurt_time = q.life_time; v.hurt_stop = !q.is_alive ? true }; v.is_hurt = true; v.hcp_alpha = q.get_pack_setting('hcp:mob_alpha') / 255; v.hurt_progress = math.clamp((v.fade_in || v.fade_out ? (v.fade_in && v.fade_out ? (math.sin(((q.life_time - v.hurt_time) / 0.5) * 180)) : (v.fade_in ? ((q.life_time - v.hurt_time) / 0.5) : (1 - ((q.life_time - v.hurt_time) / 0.5)))) : 1), 0, 1); return v.hurt_stop ? 0 : math.ease_out_cubic(0.0, v.hcp_alpha, v.hurt_progress); } : this;"
+        "r": "v.rainbow ? { t.hue = v.hurt_delta * 12; v.phase = math.floor(t.hue); v.hsv_p = t.hue - v.phase; return (v.phase == 0 ? 1 : v.phase == 1 ? 1 - v.hsv_p : v.phase == 2 ? 0 : v.phase == 3 ? 0 : v.phase == 4 ? v.hsv_p : 1); } : { return q.get_pack_setting('hcp:mob_red') / 255; };",
+        "g": "v.rainbow ? (v.phase == 0 ? v.hsv_p : v.phase == 1 ? 1 : v.phase == 2 ? 1 : v.phase == 3 ? 1 - v.hsv_p : 0) : q.get_pack_setting('hcp:mob_green') / 255",
+        "b": "v.rainbow ? (v.phase == 2 ? v.hsv_p : v.phase == 3 ? 1 : v.phase == 4 ? 1 : v.phase == 5 ? 1 - v.hsv_p : 0) : q.get_pack_setting('hcp:mob_blue') / 255",
+        "a": "v.rainbow = q.is_pack_setting_enabled('hcp:mob_rainbow'); t.fade_in = q.is_pack_setting_enabled('hcp:fade_in'); t.fade_out = q.is_pack_setting_enabled('hcp:fade_out'); v.hurt_delta = q.life_time - v.hurt_time; (v.hurt_delta >= 0.5) ? { v.hurt_time = q.life_time; v.hurt_stop = !q.is_alive }; v.is_hurt = true; t.hcp_alpha = q.get_pack_setting('hcp:mob_alpha') / 255; t.hurt_progress = math.clamp((!t.fade_in && !t.fade_out ? 1 : (t.fade_in && t.fade_out ? math.sin(v.hurt_delta * 2 * 180) : (t.fade_in ? v.hurt_delta * 2 : 1 - v.hurt_delta * 2))), 0, 1); return v.hurt_stop ? 0 : math.ease_out_cubic(0.0, t.hcp_alpha, t.hurt_progress);"
       },
       "on_fire_color": {
-        "r": "q.is_pack_setting_enabled('hcp:on_fire_color') ? (q.get_pack_setting('hcp:mob_red') / 255) : this",
-        "g": "q.is_pack_setting_enabled('hcp:on_fire_color') ? (q.get_pack_setting('hcp:mob_green') / 255) : this",
-        "b": "q.is_pack_setting_enabled('hcp:on_fire_color') ? (q.get_pack_setting('hcp:mob_blue') / 255) : this",
-        "a": "q.is_pack_setting_enabled('hcp:on_fire_color') ? (q.get_pack_setting('hcp:mob_alpha') / 255) : this"
+        "r": "q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (v.rainbow ? { t.hue = math.mod(q.life_time, 0.5) * 12; v.phase = math.floor(t.hue); v.hsv_p = t.hue - v.phase; return (v.phase == 0 ? 1 : v.phase == 1 ? 1 - v.hsv_p : v.phase == 2 ? 0 : v.phase == 3 ? 0 : v.phase == 4 ? v.hsv_p : 1); } : { return q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? q.get_pack_setting('hcp:mob_red') / 255; }) : { return this; };",
+        "g": "q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (v.rainbow ? (v.phase == 0 ? v.hsv_p : v.phase == 1 ? 1 : v.phase == 2 ? 1 : v.phase == 3 ? 1 - v.hsv_p : 0) : (q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? q.get_pack_setting('hcp:mob_green') / 255)) : this",
+        "b": "q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (v.rainbow ? (v.phase == 2 ? v.hsv_p : v.phase == 3 ? 1 : v.phase == 4 ? 1 : v.phase == 5 ? 1 - v.hsv_p : 0) : (q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? q.get_pack_setting('hcp:mob_blue') / 255)) : this",
+        "a": "v.rainbow = q.is_pack_setting_enabled('hcp:mob_rainbow'); return (q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (q.get_pack_setting('hcp:mob_alpha') / 255) : this) * (q.is_pack_setting_enabled('hcp:disable_on_fire_color') ? 0 : 1);"
       }
     }
   }

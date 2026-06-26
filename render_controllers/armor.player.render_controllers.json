@@ -1,0 +1,174 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.armor.player": {
+      "geometry": "Geometry.default",
+      "materials": [ { "*": "v.is_enchanted ? Material.enchanted : Material.default" } ],
+      "textures": [ "v.has_trim ? v.trim_path : Texture.default", "Texture.enchanted" ]
+    },
+    "controller.render.armor.player.helmet": {
+      "arrays": {
+        "textures": {
+          "Array.tier": [
+            "Texture.leather_1",
+            "Texture.chain_1",
+            "Texture.iron_1",
+            "Texture.diamond_1",
+            "Texture.gold_1",
+            "Texture.default",
+            "Texture.turtle_1",
+            "Texture.netherite_1",
+            "Texture.copper_1"
+          ]
+        }
+      },
+      "geometry": "Geometry.helmet",
+      "materials": [ { "*": "v.enchanted_helmet ? Material.armor_enchanted : (!q.armor_material_slot(0) ? Material.armor : Material.armor_leather)" } ],
+      "textures": [ "Array.tier[q.armor_texture_slot(0)]", "Texture.enchanted" ],
+      "color": {
+        "r": "q.armor_color_slot(0, 0)",
+        "g": "q.armor_color_slot(0, 1)",
+        "b": "q.armor_color_slot(0, 2)",
+        "a": "q.armor_color_slot(0, 3)"
+      },
+      "overlay_color": {
+        "a": "v.phase = v.phase ?? 0.0; v.hsv_p = v.hsv_p ?? 0.0; v.hurt_stop = false; v.is_hurt = v.is_hurt ?? false; v.hurt_time = v.hurt_time ?? 0.0; v.hurt_delta = v.hurt_delta ?? 0.0; v.rainbow = v.rainbow ?? false; v.hurt_time = !v.is_hurt ? q.life_time; v.is_hurt = false; return this;"
+      },
+      "is_hurt_color": {
+        "r": "v.rainbow ? { t.hue = v.hurt_delta * 12; v.phase = math.floor(t.hue); v.hsv_p = t.hue - v.phase; return (v.phase == 0 ? 1 : v.phase == 1 ? 1 - v.hsv_p : v.phase == 2 ? 0 : v.phase == 3 ? 0 : v.phase == 4 ? v.hsv_p : 1); } : { return q.get_pack_setting('hcp:player_red') / 255; };",
+        "g": "v.rainbow ? (v.phase == 0 ? v.hsv_p : v.phase == 1 ? 1 : v.phase == 2 ? 1 : v.phase == 3 ? 1 - v.hsv_p : 0) : q.get_pack_setting('hcp:player_green') / 255",
+        "b": "v.rainbow ? (v.phase == 2 ? v.hsv_p : v.phase == 3 ? 1 : v.phase == 4 ? 1 : v.phase == 5 ? 1 - v.hsv_p : 0) : q.get_pack_setting('hcp:player_blue') / 255",
+        "a": "v.rainbow = q.is_pack_setting_enabled('hcp:player_rainbow'); t.fade_in = q.is_pack_setting_enabled('hcp:fade_in'); t.fade_out = q.is_pack_setting_enabled('hcp:fade_out'); v.hurt_delta = q.life_time - v.hurt_time; (v.hurt_delta >= 0.5) ? { v.hurt_time = q.life_time; v.hurt_stop = !q.is_alive }; v.is_hurt = true; t.hcp_alpha = q.get_pack_setting('hcp:player_alpha') / 255; t.hurt_progress = math.clamp((!t.fade_in && !t.fade_out ? 1 : (t.fade_in && t.fade_out ? math.sin(v.hurt_delta * 2 * 180) : (t.fade_in ? v.hurt_delta * 2 : 1 - v.hurt_delta * 2))), 0, 1); return v.hurt_stop ? 0 : math.ease_out_cubic(0.0, t.hcp_alpha, t.hurt_progress);"
+      },
+      "on_fire_color": {
+        "r": "q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (v.rainbow ? { t.hue = math.mod(q.life_time, 0.5) * 12; v.phase = math.floor(t.hue); v.hsv_p = t.hue - v.phase; return (v.phase == 0 ? 1 : v.phase == 1 ? 1 - v.hsv_p : v.phase == 2 ? 0 : v.phase == 3 ? 0 : v.phase == 4 ? v.hsv_p : 1); } : { return q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? q.get_pack_setting('hcp:player_red') / 255; }) : { return this; };",
+        "g": "q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (v.rainbow ? (v.phase == 0 ? v.hsv_p : v.phase == 1 ? 1 : v.phase == 2 ? 1 : v.phase == 3 ? 1 - v.hsv_p : 0) : (q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? q.get_pack_setting('hcp:player_green') / 255)) : this",
+        "b": "q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (v.rainbow ? (v.phase == 2 ? v.hsv_p : v.phase == 3 ? 1 : v.phase == 4 ? 1 : v.phase == 5 ? 1 - v.hsv_p : 0) : (q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? q.get_pack_setting('hcp:player_blue') / 255)) : this",
+        "a": "v.rainbow = q.is_pack_setting_enabled('hcp:player_rainbow'); return (q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (q.get_pack_setting('hcp:player_alpha') / 255) : this) * (q.is_pack_setting_enabled('hcp:disable_on_fire_color') ? 0 : 1);"
+      }
+    },
+    "controller.render.armor.player.chestplate": {
+      "arrays": {
+        "textures": {
+          "Array.tier": [
+            "Texture.leather_1",
+            "Texture.chain_1",
+            "Texture.iron_1",
+            "Texture.diamond_1",
+            "Texture.gold_1",
+            "Texture.default",
+            "Texture.turtle_1",
+            "Texture.netherite_1",
+            "Texture.copper_1"
+          ]
+        }
+      },
+      "geometry": "Geometry.chestplate",
+      "materials": [ { "*": "v.enchanted_chestplate ? (q.armor_material_slot(1) == 1 ? Material.armor_enchanted : Material.armor_leather_enchanted) : (!q.armor_material_slot(1) ? Material.armor : Material.armor_leather)" } ],
+      "textures": [ "Array.tier[q.armor_texture_slot(1)]", "Texture.enchanted" ],
+      "color": {
+        "r": "q.armor_color_slot(1, 0)",
+        "g": "q.armor_color_slot(1, 1)",
+        "b": "q.armor_color_slot(1, 2)",
+        "a": "q.armor_color_slot(1, 3)"
+      },
+      "overlay_color": {
+        "a": "v.phase = v.phase ?? 0.0; v.hsv_p = v.hsv_p ?? 0.0; v.hurt_stop = false; v.is_hurt = v.is_hurt ?? false; v.hurt_time = v.hurt_time ?? 0.0; v.hurt_delta = v.hurt_delta ?? 0.0; v.rainbow = v.rainbow ?? false; v.hurt_time = !v.is_hurt ? q.life_time; v.is_hurt = false; return this;"
+      },
+      "is_hurt_color": {
+        "r": "v.rainbow ? { t.hue = v.hurt_delta * 12; v.phase = math.floor(t.hue); v.hsv_p = t.hue - v.phase; return (v.phase == 0 ? 1 : v.phase == 1 ? 1 - v.hsv_p : v.phase == 2 ? 0 : v.phase == 3 ? 0 : v.phase == 4 ? v.hsv_p : 1); } : { return q.get_pack_setting('hcp:player_red') / 255; };",
+        "g": "v.rainbow ? (v.phase == 0 ? v.hsv_p : v.phase == 1 ? 1 : v.phase == 2 ? 1 : v.phase == 3 ? 1 - v.hsv_p : 0) : q.get_pack_setting('hcp:player_green') / 255",
+        "b": "v.rainbow ? (v.phase == 2 ? v.hsv_p : v.phase == 3 ? 1 : v.phase == 4 ? 1 : v.phase == 5 ? 1 - v.hsv_p : 0) : q.get_pack_setting('hcp:player_blue') / 255",
+        "a": "v.rainbow = q.is_pack_setting_enabled('hcp:player_rainbow'); t.fade_in = q.is_pack_setting_enabled('hcp:fade_in'); t.fade_out = q.is_pack_setting_enabled('hcp:fade_out'); v.hurt_delta = q.life_time - v.hurt_time; (v.hurt_delta >= 0.5) ? { v.hurt_time = q.life_time; v.hurt_stop = !q.is_alive }; v.is_hurt = true; t.hcp_alpha = q.get_pack_setting('hcp:player_alpha') / 255; t.hurt_progress = math.clamp((!t.fade_in && !t.fade_out ? 1 : (t.fade_in && t.fade_out ? math.sin(v.hurt_delta * 2 * 180) : (t.fade_in ? v.hurt_delta * 2 : 1 - v.hurt_delta * 2))), 0, 1); return v.hurt_stop ? 0 : math.ease_out_cubic(0.0, t.hcp_alpha, t.hurt_progress);"
+      },
+      "on_fire_color": {
+        "r": "q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (v.rainbow ? { t.hue = math.mod(q.life_time, 0.5) * 12; v.phase = math.floor(t.hue); v.hsv_p = t.hue - v.phase; return (v.phase == 0 ? 1 : v.phase == 1 ? 1 - v.hsv_p : v.phase == 2 ? 0 : v.phase == 3 ? 0 : v.phase == 4 ? v.hsv_p : 1); } : { return q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? q.get_pack_setting('hcp:player_red') / 255; }) : { return this; };",
+        "g": "q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (v.rainbow ? (v.phase == 0 ? v.hsv_p : v.phase == 1 ? 1 : v.phase == 2 ? 1 : v.phase == 3 ? 1 - v.hsv_p : 0) : (q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? q.get_pack_setting('hcp:player_green') / 255)) : this",
+        "b": "q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (v.rainbow ? (v.phase == 2 ? v.hsv_p : v.phase == 3 ? 1 : v.phase == 4 ? 1 : v.phase == 5 ? 1 - v.hsv_p : 0) : (q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? q.get_pack_setting('hcp:player_blue') / 255)) : this",
+        "a": "v.rainbow = q.is_pack_setting_enabled('hcp:player_rainbow'); return (q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (q.get_pack_setting('hcp:player_alpha') / 255) : this) * (q.is_pack_setting_enabled('hcp:disable_on_fire_color') ? 0 : 1);"
+      }
+    },
+    "controller.render.armor.player.leggings": {
+      "arrays": {
+        "textures": {
+          "Array.tier": [
+            "Texture.leather_2",
+            "Texture.chain_2",
+            "Texture.iron_2",
+            "Texture.diamond_2",
+            "Texture.gold_2",
+            "Texture.default",
+            "Texture.turtle_1",
+            "Texture.netherite_2",
+            "Texture.copper_2"
+          ]
+        }
+      },
+      "geometry": "Geometry.leggings",
+      "materials": [ { "*": "v.enchanted_leggings ? (q.armor_material_slot(2) == 1 ? Material.armor_enchanted : Material.armor_leather_enchanted) : (!q.armor_material_slot(2) ? Material.armor : Material.armor_leather)" } ],
+      "textures": [ "Array.tier[q.armor_texture_slot(2)]", "Texture.enchanted" ],
+      "color": {
+        "r": "q.armor_color_slot(2, 0)",
+        "g": "q.armor_color_slot(2, 1)",
+        "b": "q.armor_color_slot(2, 2)",
+        "a": "q.armor_color_slot(2, 3)"
+      },
+      "overlay_color": {
+        "a": "v.phase = v.phase ?? 0.0; v.hsv_p = v.hsv_p ?? 0.0; v.hurt_stop = false; v.is_hurt = v.is_hurt ?? false; v.hurt_time = v.hurt_time ?? 0.0; v.hurt_delta = v.hurt_delta ?? 0.0; v.rainbow = v.rainbow ?? false; v.hurt_time = !v.is_hurt ? q.life_time; v.is_hurt = false; return this;"
+      },
+      "is_hurt_color": {
+        "r": "v.rainbow ? { t.hue = v.hurt_delta * 12; v.phase = math.floor(t.hue); v.hsv_p = t.hue - v.phase; return (v.phase == 0 ? 1 : v.phase == 1 ? 1 - v.hsv_p : v.phase == 2 ? 0 : v.phase == 3 ? 0 : v.phase == 4 ? v.hsv_p : 1); } : { return q.get_pack_setting('hcp:player_red') / 255; };",
+        "g": "v.rainbow ? (v.phase == 0 ? v.hsv_p : v.phase == 1 ? 1 : v.phase == 2 ? 1 : v.phase == 3 ? 1 - v.hsv_p : 0) : q.get_pack_setting('hcp:player_green') / 255",
+        "b": "v.rainbow ? (v.phase == 2 ? v.hsv_p : v.phase == 3 ? 1 : v.phase == 4 ? 1 : v.phase == 5 ? 1 - v.hsv_p : 0) : q.get_pack_setting('hcp:player_blue') / 255",
+        "a": "v.rainbow = q.is_pack_setting_enabled('hcp:player_rainbow'); t.fade_in = q.is_pack_setting_enabled('hcp:fade_in'); t.fade_out = q.is_pack_setting_enabled('hcp:fade_out'); v.hurt_delta = q.life_time - v.hurt_time; (v.hurt_delta >= 0.5) ? { v.hurt_time = q.life_time; v.hurt_stop = !q.is_alive }; v.is_hurt = true; t.hcp_alpha = q.get_pack_setting('hcp:player_alpha') / 255; t.hurt_progress = math.clamp((!t.fade_in && !t.fade_out ? 1 : (t.fade_in && t.fade_out ? math.sin(v.hurt_delta * 2 * 180) : (t.fade_in ? v.hurt_delta * 2 : 1 - v.hurt_delta * 2))), 0, 1); return v.hurt_stop ? 0 : math.ease_out_cubic(0.0, t.hcp_alpha, t.hurt_progress);"
+      },
+      "on_fire_color": {
+        "r": "q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (v.rainbow ? { t.hue = math.mod(q.life_time, 0.5) * 12; v.phase = math.floor(t.hue); v.hsv_p = t.hue - v.phase; return (v.phase == 0 ? 1 : v.phase == 1 ? 1 - v.hsv_p : v.phase == 2 ? 0 : v.phase == 3 ? 0 : v.phase == 4 ? v.hsv_p : 1); } : { return q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? q.get_pack_setting('hcp:player_red') / 255; }) : { return this; };",
+        "g": "q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (v.rainbow ? (v.phase == 0 ? v.hsv_p : v.phase == 1 ? 1 : v.phase == 2 ? 1 : v.phase == 3 ? 1 - v.hsv_p : 0) : (q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? q.get_pack_setting('hcp:player_green') / 255)) : this",
+        "b": "q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (v.rainbow ? (v.phase == 2 ? v.hsv_p : v.phase == 3 ? 1 : v.phase == 4 ? 1 : v.phase == 5 ? 1 - v.hsv_p : 0) : (q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? q.get_pack_setting('hcp:player_blue') / 255)) : this",
+        "a": "v.rainbow = q.is_pack_setting_enabled('hcp:player_rainbow'); return (q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (q.get_pack_setting('hcp:player_alpha') / 255) : this) * (q.is_pack_setting_enabled('hcp:disable_on_fire_color') ? 0 : 1);"
+      }
+    },
+    "controller.render.armor.player.boots": {
+      "arrays": {
+        "textures": {
+          "Array.tier": [
+            "Texture.leather_1",
+            "Texture.chain_1",
+            "Texture.iron_1",
+            "Texture.diamond_1",
+            "Texture.gold_1",
+            "Texture.default",
+            "Texture.turtle_1",
+            "Texture.netherite_1",
+            "Texture.copper_1"
+          ]
+        }
+      },
+      "geometry": "Geometry.boots",
+      "materials": [ { "*": "v.enchanted_boots ? (q.armor_material_slot(3) == 1 ? Material.armor_enchanted : Material.armor_leather_enchanted) : (!q.armor_material_slot(3) ? Material.armor : Material.armor_leather)" } ],
+      "textures": [ "Array.tier[q.armor_texture_slot(3)]", "Texture.enchanted" ],
+      "color": {
+        "r": "q.armor_color_slot(3, 0)",
+        "g": "q.armor_color_slot(3, 1)",
+        "b": "q.armor_color_slot(3, 2)",
+        "a": "q.armor_color_slot(3, 3)"
+      },
+      "overlay_color": {
+        "a": "v.phase = v.phase ?? 0.0; v.hsv_p = v.hsv_p ?? 0.0; v.hurt_stop = false; v.is_hurt = v.is_hurt ?? false; v.hurt_time = v.hurt_time ?? 0.0; v.hurt_delta = v.hurt_delta ?? 0.0; v.rainbow = v.rainbow ?? false; v.hurt_time = !v.is_hurt ? q.life_time; v.is_hurt = false; return this;"
+      },
+      "is_hurt_color": {
+        "r": "v.rainbow ? { t.hue = v.hurt_delta * 12; v.phase = math.floor(t.hue); v.hsv_p = t.hue - v.phase; return (v.phase == 0 ? 1 : v.phase == 1 ? 1 - v.hsv_p : v.phase == 2 ? 0 : v.phase == 3 ? 0 : v.phase == 4 ? v.hsv_p : 1); } : { return q.get_pack_setting('hcp:player_red') / 255; };",
+        "g": "v.rainbow ? (v.phase == 0 ? v.hsv_p : v.phase == 1 ? 1 : v.phase == 2 ? 1 : v.phase == 3 ? 1 - v.hsv_p : 0) : q.get_pack_setting('hcp:player_green') / 255",
+        "b": "v.rainbow ? (v.phase == 2 ? v.hsv_p : v.phase == 3 ? 1 : v.phase == 4 ? 1 : v.phase == 5 ? 1 - v.hsv_p : 0) : q.get_pack_setting('hcp:player_blue') / 255",
+        "a": "v.rainbow = q.is_pack_setting_enabled('hcp:player_rainbow'); t.fade_in = q.is_pack_setting_enabled('hcp:fade_in'); t.fade_out = q.is_pack_setting_enabled('hcp:fade_out'); v.hurt_delta = q.life_time - v.hurt_time; (v.hurt_delta >= 0.5) ? { v.hurt_time = q.life_time; v.hurt_stop = !q.is_alive }; v.is_hurt = true; t.hcp_alpha = q.get_pack_setting('hcp:player_alpha') / 255; t.hurt_progress = math.clamp((!t.fade_in && !t.fade_out ? 1 : (t.fade_in && t.fade_out ? math.sin(v.hurt_delta * 2 * 180) : (t.fade_in ? v.hurt_delta * 2 : 1 - v.hurt_delta * 2))), 0, 1); return v.hurt_stop ? 0 : math.ease_out_cubic(0.0, t.hcp_alpha, t.hurt_progress);"
+      },
+      "on_fire_color": {
+        "r": "q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (v.rainbow ? { t.hue = math.mod(q.life_time, 0.5) * 12; v.phase = math.floor(t.hue); v.hsv_p = t.hue - v.phase; return (v.phase == 0 ? 1 : v.phase == 1 ? 1 - v.hsv_p : v.phase == 2 ? 0 : v.phase == 3 ? 0 : v.phase == 4 ? v.hsv_p : 1); } : { return q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? q.get_pack_setting('hcp:player_red') / 255; }) : { return this; };",
+        "g": "q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (v.rainbow ? (v.phase == 0 ? v.hsv_p : v.phase == 1 ? 1 : v.phase == 2 ? 1 : v.phase == 3 ? 1 - v.hsv_p : 0) : (q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? q.get_pack_setting('hcp:player_green') / 255)) : this",
+        "b": "q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (v.rainbow ? (v.phase == 2 ? v.hsv_p : v.phase == 3 ? 1 : v.phase == 4 ? 1 : v.phase == 5 ? 1 - v.hsv_p : 0) : (q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? q.get_pack_setting('hcp:player_blue') / 255)) : this",
+        "a": "v.rainbow = q.is_pack_setting_enabled('hcp:player_rainbow'); return (q.is_pack_setting_enabled('hcp:apply_to_on_fire_color') ? (q.get_pack_setting('hcp:player_alpha') / 255) : this) * (q.is_pack_setting_enabled('hcp:disable_on_fire_color') ? 0 : 1);"
+      }
+    }
+  }
+}

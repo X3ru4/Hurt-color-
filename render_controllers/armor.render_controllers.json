@@ -1,0 +1,11 @@
+{
+  "format_version": "1.8.0",
+  "render_controllers": {
+    "controller.render.armor": {
+      "geometry": "Geometry.default",
+      "part_visibility": [ { "*": "!q.is_owner_identifier_any('minecraft:player') || !q.is_pack_setting_enabled('hcp:apply_to_armor')" } ],
+      "materials": [ { "*": "v.is_enchanted ? Material.enchanted : Material.default" } ],
+      "textures": [ "v.has_trim ? v.trim_path : Texture.default", "Texture.enchanted" ]
+    }
+  }
+}
