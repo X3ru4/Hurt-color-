@@ -1,10 +1,10 @@
 {
   "format_version": 3,
   "header": {
-    "name": " §lHurt color+§r",
+    "name": " §l§6Hurt color+§r | v1.1.0 ",
     "description": "§l§7by§r X3ru4\nThis resource pack changes the damage color of players and entities.",
     "uuid": "3041ea4a-8c71-4dd9-aa27-27bea1c13b02",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "min_engine_version": "1.21.130"
   },
   "modules": [
@@ -12,7 +12,7 @@
       "description": "Hurt color+",
       "type": "resources",
       "uuid": "5471b3b8-d7f3-4a93-b4fd-fad9727c9d3b",
-      "version": "1.0.0"
+      "version": "1.1.0"
     }
   ],
   "metadata": {
@@ -23,28 +23,20 @@
   },
   "settings": [
     {
-      "type": "toggle",
-      "default": true,
-      "name": "hcp:on_fire_color",
-      "text": "§lApply to 'on_fire_color'"
-    },
-    {
-      "type": "toggle",
-      "default": false,
-      "name": "hcp:rainbow",
-      "text": "§lRainbow§r (son!)"
+      "type": "label",
+      "text": "§lAnimations"
     },
     {
       "type": "toggle",
       "default": false,
       "name": "hcp:fade_in",
-      "text": "§lFade-in§r"
+      "text": "Fade-in"
     },
     {
       "type": "toggle",
       "default": true,
       "name": "hcp:fade_out",
-      "text": "§lFade-out§r (Recommended)"
+      "text": "Fade-out (Recommended)"
     },
     {
       "type": "label",
@@ -87,6 +79,12 @@
       "default": 76
     },
     {
+      "type": "toggle",
+      "default": false,
+      "name": "hcp:player_rainbow",
+      "text": "§cR§ea§ai§bn§9b§dow"
+    },
+    {
       "type": "label",
       "text": "§lMob §cR§aG§9B§fA"
     },
@@ -127,8 +125,36 @@
       "default": 76
     },
     {
+      "type": "toggle",
+      "default": false,
+      "name": "hcp:mob_rainbow",
+      "text": "§cR§ea§ai§bn§9b§dow"
+    },
+    {
       "type": "label",
-      "text": "§lFormulas§r [Red, Green, Blue, Alpha]\n[255, 0, 0, 76] -> Default\n[240, 240, 240, 178] -> White Smoke\n[220, 20, 60, xxx] -> Crimson\n[255, 215, 0, xxx] -> Gold\n[127, 255, 0, xxx] -> Chartreuse\n[32, 178, 170, xxx] -> Light sea green\n[0, 191, 255, xxx] -> Deep sky blue"
+      "text": "§lMiscellaneous"
+    },
+    {
+      "type": "toggle",
+      "default": true,
+      "name": "hcp:disable_on_fire_color",
+      "text": "Disable 'on_fire_color' (Recommended)"
+    },
+    {
+      "type": "toggle",
+      "default": true,
+      "name": "hcp:apply_to_on_fire_color",
+      "text": "Apply to 'on_fire_color'"
+    },
+    {
+      "type": "toggle",
+      "default": false,
+      "name": "hcp:apply_to_armor",
+      "text": "Apply to armor (Player only! When activated, armor trimming will be lost and and there are a few bugs =))"
+    },
+    {
+      "type": "label",
+      "text": "§lColor mixing formulas§r [Red, Green, Blue, Alpha]\n[255, 0, 0, 76] -> Default\n[240, 240, 240, 178] -> White Smoke\n[220, 20, 60, xxx] -> Crimson\n[255, 215, 0, xxx] -> Gold\n[127, 255, 0, xxx] -> Chartreuse\n[32, 178, 170, xxx] -> Light sea green\n[0, 191, 255, xxx] -> Deep sky blue\n§lAuthor:§r X3ru4 "
     }
   ]
 }
